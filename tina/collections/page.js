@@ -1,0 +1,36 @@
+/**
+ * @type {import('tinacms').Collection}
+ */
+export default {
+  label: "Page Content",
+  name: "page",
+  path: "content/page",
+  format: "mdx",
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      label: 'Tags',
+      name: 'tags',
+      type: 'string',
+      list: true,
+    },
+    {
+      name: "body",
+      label: "Main Content",
+      type: "rich-text",
+      isBody: true,
+    },
+  ],
+  ui: {
+    router: ({ document }) => {
+      if (document._sys.filename === "home") {
+        return `/`;
+      }
+      return undefined;
+    },
+  },
+};
